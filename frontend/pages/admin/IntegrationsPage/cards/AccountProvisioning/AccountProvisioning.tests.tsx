@@ -322,7 +322,7 @@ describe("AccountProvisioning", () => {
       await user.click(screen.getByRole("button", { name: /save/i }));
     };
 
-    it("surfaces field-level server errors inline on the matching fields and in the toast", async () => {
+    it("surfaces field-level server errors inline on the matching fields, not repeated in the toast", async () => {
       (configAPI.update as jest.Mock).mockRejectedValue({
         status: 422,
         data: {
@@ -353,7 +353,7 @@ describe("AccountProvisioning", () => {
         screen.getByText(/must be a valid https url/i)
       ).toBeInTheDocument();
       expect(notify.error).toHaveBeenCalledWith(
-        expect.stringContaining("must be provided when changing"),
+        "Failed to update settings.",
         expect.anything()
       );
     });

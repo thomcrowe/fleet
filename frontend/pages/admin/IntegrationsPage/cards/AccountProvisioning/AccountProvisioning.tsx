@@ -162,8 +162,11 @@ const AccountProvisioning = ({ appConfig }: IAppConfigFormProps) => {
       await queryClient.invalidateQueries(["config"]);
       notify.success("Successfully updated settings.");
     } catch (err) {
-      setServerFormErrors(getServerFieldErrors(err));
-      const reason = getErrorReason(err);
+      const fieldErrors = getServerFieldErrors(err);
+      setServerFormErrors(fieldErrors);
+      // A reason shown on its field isn't repeated in the toast.
+      const reason =
+        Object.keys(fieldErrors).length > 0 ? "" : getErrorReason(err);
       notify.error(
         reason
           ? `Failed to update settings: ${reason}`
