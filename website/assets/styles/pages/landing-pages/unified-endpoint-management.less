@@ -1531,3 +1531,36 @@
     }
   }
 }
+
+// Customer logos, matching /apple and /windows: a 3x2 grid whose background shows through 1px gaps as dividers.
+#unified-endpoint-management [purpose='quote-and-logos'] [purpose='logo-grid'].customer-logos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  flex: 1 1 50%;
+  width: auto;
+  background-color: #E2E4EA;
+  [purpose='logo'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 104px;
+    padding: 0;
+    border: none;
+    background-color: #FFF;
+    img {
+      width: auto;
+      max-width: 80%;
+      object-fit: contain;
+    }
+  }
+  @media (max-width: 991px) {
+    width: 100%;
+  }
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(2, 1fr);
+    [purpose='logo'] {
+      height: 88px;
+    }
+  }
+}
