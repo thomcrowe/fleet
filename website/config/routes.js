@@ -772,7 +772,7 @@ module.exports.routes = {
     action: 'landing-pages/view-replace-workspace-one',
     locals: {
       hideHeaderLinks: true,
-      pageTitleForMeta: 'Workspace ONE is not your only option anymore',
+      pageTitleForMeta: 'Replace Workspace ONE and everything you bolted onto it',
       pageDescriptionForMeta: 'Move off Workspace ONE without wiping devices. Manage macOS, Windows, Linux, iOS, and Android in one place, with vulnerability detection and compliance built in.'
     }
   },
