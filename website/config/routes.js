@@ -768,6 +768,15 @@ module.exports.routes = {
     }
   },
 
+  'GET /lp/unified-endpoint-management': {
+    action: 'landing-pages/view-unified-endpoint-management',
+    locals: {
+      hideHeaderLinks: true,
+      pageTitleForMeta: 'Unified endpoint management for every OS',
+      pageDescriptionForMeta: 'Manage macOS, Windows, Linux, iOS, iPadOS, Android, and ChromeOS from one console, with live device data, patching, and vulnerability detection built in.'
+    }
+  },
+
   'GET /lp/autonomous-endpoint-management': {
     action: 'landing-pages/view-autonomous-endpoint-management',
     locals: {
