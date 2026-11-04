@@ -1,1490 +1,267 @@
 #unified-endpoint-management {
-  @heading-lineheight: 120%;
-  @text-lineheight: 150%;
 
-  // Applies the section spacing scale from spacing.less for one breakpoint.
-  // page-content has a single gap, so the quote gets the difference as padding
-  // (never negative, in case @around-quote is the smaller token at a tier).
-  // The tweets carousel sits outside page-content, so its padding is reduced by
-  // the page-container padding next to it to keep the same visible gap.
-  .section-spacing(@between-sections; @around-quote; @heading-to-content; @page-padding) {
-    [purpose='page-content'], [purpose='hero-and-top-section'], [purpose='bottom-section'], [purpose='top-section'], [purpose='features-section'] {
-      gap: @between-sections;
-    }
-    [purpose='feature-with-image-row'] {
-      row-gap: @between-sections;
-    }
-    [purpose='quote-and-logos'] {
-      padding: max(@around-quote - @between-sections, 0px) 0;
-    }
-    [purpose='page-section'], [purpose='hardware-section'] {
-      gap: @heading-to-content;
-    }
-    [purpose='tweets-container'] {
-      padding-top: @between-sections - @page-padding;
-    }
-    [parasails-component='scrollable-tweets'] [purpose='tweets'] {
-      padding-bottom: @between-sections - @page-padding;
-    }
+  h1 {
+    .page-heading();
+    color: @core-fleet-black;
+    margin-bottom: 0px;
   }
-
-  .section-spacing(@section-160; @section-200; @section-64; 64px);
-
+  h2 {
+    .section-heading();
+    color: @core-fleet-black;
+    margin-bottom: 0px;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  h4 {
+    .kicker-title();
+    margin-bottom: 0px;
+  }
+  h5 {
+    .title-s();
+    font-weight: @bold;
+    color: @core-fleet-black;
+    margin-bottom: 0px;
+  }
   p {
+    .body-l();
+    color: @core-fleet-black-75;
     margin-bottom: 0px;
   }
 
-  // Keeps headings and intro text from stretching too wide in stacked layouts.
-  h1, h2, [purpose='page-hero-text'] p, [purpose='feature-text'] > p, [purpose='section-heading'] p {
-    max-width: 800px;
-  }
-
   [purpose='page-container'] {
-    padding: 64px;
+    .page-container();
   }
-
   [purpose='page-content'] {
-    max-width: 1072px;
-    min-width: 0px;
+    .page-content();
     display: flex;
     flex-direction: column;
-    margin: auto;
+    gap: @section-160;
   }
-  [purpose='hero-and-top-section'] {
+  [purpose='hero-and-top-section'], [purpose='top-section'], [purpose='features-section'], [purpose='bottom-section'] {
     display: flex;
     flex-direction: column;
+    gap: @section-160;
   }
-  [purpose='bottom-section'] {
+  [purpose='page-section'] {
     display: flex;
     flex-direction: column;
-  }
-  [purpose='top-section'] {
-    display: flex;
-    flex-direction: column;
-  }
-  [purpose='features-section'] {
-    display: flex;
-    flex-direction: column;
+    gap: @section-64;
   }
 
-  [purpose='page-hero'] {
-    padding: 48px 0 0;
+  [purpose='button-row'], [purpose='section-buttons'] {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    align-content: center;
-    justify-content: flex-start;
-    gap: 48px 8px;
-    align-self: stretch;
+    gap: @section-gap-sm;
+  }
+  [purpose='cta-button'] {
+    .cta-button();
+    height: 36px;
+    min-width: 140px;
+    padding: @inner-padding-xs @inner-padding;
+    font-size: 14px;
+    line-height: 150%;
+    flex-shrink: 0;
   }
 
+  // Hero
+  [purpose='page-hero'] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: @section-48;
+    padding-top: @page-padding-sm;
+  }
   [purpose='page-hero-content'] {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    max-width: 600px;
-    text-align: left;
+    gap: @section-gap;
+    flex: 1 1 50%;
+  }
+  [purpose='page-hero-headings'] {
+    display: flex;
+    flex-direction: column;
+    gap: @inner-padding-xs;
+    h4 {
+      margin-bottom: 0px;
+    }
   }
   [purpose='page-hero-image'] {
-    max-width: 50%;
+    flex: 1 1 50%;
     img {
-      width: 100%;
-      flex: 1 0 0;
-      aspect-ratio: 4 / 3;
-    }
-  }
-
-  [purpose='page-hero-headings'] {
-    h4 {
-      color: #515774;
-      font-feature-settings: 'salt' on, 'ss01' on, 'ss02' on;
-      font-family: 'Roboto Mono';
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: @text-lineheight;
-      text-transform: uppercase;
-      margin-bottom: 0px;
-    }
-    h1 {
-      color: #192147;
-      margin-bottom: 0px;
-      font-family: Inter;
-      font-size: 48px;
-      font-style: normal;
-      font-weight: 800;
-      line-height: 120%;
-    }
-  }
-
-  [purpose='page-hero-text'] {
-    p {
-      color: #515774;
-
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%;
-    }
-  }
-
-  [purpose='page-section'] {// For landing page sections.
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  [purpose='feature-text'] {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 800px;
-    align-self: center;
-    text-align: left;
-    h2 {
-      color: #192147;
-
-      font-size: 32px;
-      font-style: normal;
-      font-weight: 800;
-      line-height: 120%;
-      margin-bottom: 0px;
-    }
-    p {
-      color: #515774;
-
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%;
-      margin-bottom: 0px;
-      // max-width: 800px;
-    }
-  }
-
-  [purpose='top-section'] {
-    [purpose='feature-text'] {
-      align-items: center;
-      text-align: center;
-      // Wide enough for five 120px distros with 48px gaps; the intro keeps its 702px measure.
-      max-width: 792px;
-      p {
-        max-width: 702px;
-      }
-    }
-  }
-
-  [purpose='supported-os-grid'] {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 48px 48px;
-    margin-top: 32px;
-  }
-
-  [purpose='supported-os'] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    width: 120px;
-    img {
-      height: 40px;
-      width: auto;
-    }
-    p {
-      color: #515774;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 120%;
-      margin-bottom: 0px;
-    }
-    [purpose='os-name'] {
-      text-align: center;
-    }
-    [purpose='os-version'] {
-      .body-s();
-      color: @core-fleet-black-75;
-    }
-  }
-
-  // Pattern matches /endpoint-governance's "Introducing Fleet" section: a
-  // centered [purpose='section-heading'] followed by [purpose='three-column-list'].
-  // Scoped so it doesn't affect the section-heading above the tweets carousel.
-  [purpose='top-section'], [purpose='hardware-section'] {
-    [purpose='section-heading'] {
-      align-self: center;
-      text-align: center;
-      gap: 16px;
-      max-width: 702px;
-      [purpose='kicker-text'] {
-        display: flex;
-        justify-content: center;
-        img {
-          height: 28px;
-        }
-      }
-      h2 {
-        color: #192147;
-        font-size: 32px;
-        font-style: normal;
-        font-weight: 800;
-        line-height: 120%;
-        margin-bottom: 0px;
-      }
-    }
-    [purpose='three-column-list'] {
-      align-self: center;
-      width: 100%;
-    }
-    [purpose='section-heading'] + [purpose='three-column-list'] + [purpose='button-row'] {
-      align-self: center;
-    }
-  }
-
-  // Reused from /endpoint-governance's [purpose='banner'] component, new copy/image.
-  [purpose='banner'] {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 24px;
-    border: 1px solid @core-fleet-black-10;
-    background: @ui-off-white;
-    width: 100%;
-    [purpose='banner-image'] {
-      width: 50%;
-      max-width: 525px;
-      background: url('/images/ai-powered-it-banner-525x546@2x.png');
-      background-size: cover;
-      border-top-right-radius: 16px;
-      border-bottom-right-radius: 16px;
-      background-position: center;
-    }
-    [purpose='banner-text'] {
-      display: flex;
-      padding: 64px 48px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 32px;
-      flex: 1 0 0;
-      width: 50%;
-      p {
-        color: @core-fleet-black-75;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        strong {
-          color: @core-fleet-black-75;
-        }
-      }
-      h2 {
-        .section-heading();
-        color: @core-fleet-black;
-        margin-bottom: 0px;
-      }
-      h5 {
-        color: @core-fleet-black;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 24px;
-        margin-bottom: 0px;
-      }
-      [purpose='banner-item'] {
-        display: flex;
-        padding: 24px 0;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        align-self: stretch;
-        &:first-of-type {
-          padding-top: 0;
-        }
-        &:last-of-type {
-          padding-bottom: 0;
-        }
-        &:not(:last-of-type) {
-          border-bottom: 1px solid @core-fleet-black-10;
-        }
-      }
-    }
-  }
-
-  // Reused from /endpoint-governance's [purpose='three-column-list'] component.
-  [purpose='three-column-list'] {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 64px;
-    width: 100%;
-    &.sm-gap {
-      gap: 48px;
-      [purpose='feature'] {
-        flex: 0 1 ~'calc((100% - 2 * 48px) / 3)';
-      }
-    }
-    [purpose='feature'] {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      flex: 0 1 ~'calc((100% - 2 * 64px) / 3)';
-      min-width: 0;
-      margin-bottom: 0;
-      text-align: left;
-      h5 {
-        font-size: 16px;
-        line-height: 1.2;
-        font-weight: 700;
-        margin-bottom: 0px;
-      }
-      p {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 21px;
-        margin-bottom: 0px;
-      }
-    }
-  }
-
-  [purpose='button-row'] {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-  }
-
-  [ purpose='cta-button'] {
-    .cta-button();
-    display: flex;
-    height: 36px;
-    min-width: 140px;
-    padding: 8px 16px;
-    line-height: 150%;
-    font-size: 14px;
-    gap: 4px;
-  }
-
-  [purpose='quote-and-logos'] {
-    display: flex;
-    flex-direction: row;
-    gap: 64px;
-  }
-  [purpose='section-quote'] {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
-    align-self: center;
-    max-width: 50%;
-    [purpose='quote-content'] {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 16px;
-    }
-    [purpose='quote-text'] {
-      color: #515774;
-      text-align: left;
-      font-family: Inter;
-      font-size: 18px;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 150%;
-    }
-    [purpose='quote-author-info'] {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 16px;
-      align-self: center;
-    }
-    [purpose='quote-author-image'] {
-      img {
-        height: 48px;
-        width: 48px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    }
-    [purpose='name-and-title'] {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    [purpose='author-name'] {
-      color: #192147;
-      font-family: Inter;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 150%;
-    }
-    [purpose='author-title'] {
-      color: #515774;
-      font-family: Inter;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%;
-    }
-  }
-
-  [purpose='logo-grid'] {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    [purpose='logo-row'] {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      &:first-of-type {
-        border-bottom: 1px solid #E2E4EA;
-      }
-      [purpose='logo'] {
-        &:nth-of-type(2) {
-          border-right: 1px solid #E2E4EA;
-          border-left: 1px solid #E2E4EA;
-        }
-        height: 76px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 33.33%;
-        img {
-          height: 20px;
-          width: auto;
-        }
-        &.nutanix {
-          padding: 0 29.374px 0 29.775px;
-          img {
-            height: 14px;
-          }
-        }
-        &.leidos {
-          padding: 26px 33.637px 26px 33px;
-          img {
-            height: 24px;
-          }
-        }
-        &.proton {
-          padding: 26px 36.723px 26px 37px;
-          img {
-            height: 24px;
-          }
-        }
-        &.grafana {
-          padding: 26px 17px 27px 16px;
-          img {
-            height: 23px;
-          }
-        }
-        &.calendly {
-          padding: 26px 34.551px 26px 34px;
-          img {
-            height: 25px;
-          }
-        }
-
-      }
-
-    }
-  }
-
-  [purpose='feature-with-image-row'] {
-    display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
-    column-gap: 64px;
-    align-self: stretch;
-    flex-wrap: wrap;
-    [purpose='feature-item'] {
-      max-width: 50%;
-      gap: 48px;
-      flex: 1 0 40%;
-      [purpose='feature-image'] {
-        img {
-          // max-height: 284px;
-          width: 100%;
-          align-self: stretch;
-          aspect-ratio: 126 / 71;
-        }
-      }
-    }
-    [purpose='image-caption'] {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-  }
-
-  [purpose='feature-item'] {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    flex: 1 0 46%;
-    h5 {
-      color: #192147;
-
-      /* Title XS */
-      font-family: Inter;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 120%;
-      margin-bottom: 0px;
-    }
-  p {
-      color: #515774;
-
-      /* Body/MD */
-      font-family: Inter;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%;
-    }
-
-  }
-
-  [purpose='hardware-section'] {
-    display: flex;
-    flex-direction: column;
-    [purpose='section-heading'] {
-      align-self: flex-start;
-      text-align: left;
-    }
-    [purpose='section-heading'] p {
-      color: #515774;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 150%;
-    }
-    [purpose='feature-with-image-row'] [purpose='feature-item'] [purpose='feature-image'] img {
-      aspect-ratio: 2 / 1;
-    }
-  }
-
-  [purpose='faq-section'] {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    h2 {
-      .section-heading();
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-  [purpose='accordion'] {
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-    max-width: 800px;
-    [purpose='accordion-body'] {
-
-      width: 100%;
-
-      [purpose='accordion-item'] {
-        border-bottom: 1px solid #E2E4EA;
-        margin-top: 24px;
-        margin-bottom: 16px;
-      }
-    }
-    [purpose='accordion-header'] {
-      color: @core-fleet-black;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 700;
-      margin-bottom: 16px;
-      p {
-        margin-bottom: 0px;
-      }
-      span {
-        color: @core-fleet-black;
-        font-weight: 900;
-      }
-      &[aria-expanded='true'] {
-        span {
-          transform: rotate(180deg);
-        }
-      }
-    }
-    [purpose='accordion-answer'] {
-      padding: 0 40px 16px 0;
-      p {
-        margin-bottom: 0px;
-      }
-    }
-  }
-
-  [purpose='section-heading'] {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    max-width: 663px;
-    h2 {
-      .section-heading();
-      color: #192147;
-      font-family: Inter;
-      font-style: normal;
-    }
-  }
-  [purpose='tweets-container'] {
-    max-width: 1072px;
-    padding-left: 64px;
-    padding-right: 64px;
-  }
-  [parasails-component='scrollable-tweets'] {
-    [purpose='tweets'] {
-      margin-top: 40px;
-      margin-bottom: 0px;
-      padding-left: 64px;
-    }
-    [purpose='tweet-card'] {
-      [purpose='quote'] {
-        margin-bottom: 24px;
-      }
-    }
-  }
-
-  [purpose='bottom-cta'] {
-    text-align: center;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    h1 {
-      color: #192147;
-      text-align: center;
-
-      font-family: Inter;
-      font-size: 48px;
-      font-style: normal;
-      font-weight: 800;
-      line-height: 120%;
-    }
-    h4 {
-      color: #515774;
-      font-feature-settings: 'salt' on, 'ss01' on, 'ss02' on;
-      font-family: 'Roboto Mono';
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 150%;
-      text-transform: uppercase;
-      margin-bottom: 0px;
-    }
-    [purpose='button-row'] {
-      margin-top: 16px;
-    }
-  }
-
-  @media (max-width: 1200px) {
-    .section-spacing(@section-160-lg; @section-200-lg; @section-64-lg; 64px);
-    [purpose='page-hero'] {
-      padding-top: 48px;
-      padding-bottom: 0;
-
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 48px 8px;
-    }
-    [purpose='page-hero-image'] {
-      max-width: 50%;
-      img {
-        width: 400px;
-        flex: 1 0 0;
-        aspect-ratio: 4 / 3;
-      }
-    }
-
-  }
-  @media (max-width: 991px) {
-    .section-spacing(@section-160-md; @section-200-md; @section-64-md; 48px);
-
-    [purpose='page-container'] {
-      padding: 48px;
-    }
-    [purpose='page-hero'] {
-      padding-top: 32px;
-      padding-bottom: 0;
-      flex-direction: column;
-      flex-wrap: nowrap;
-    }
-    [purpose='page-hero-content'] {
-      max-width: 100%;
-      align-items: center;
-      text-align: center;
-    }
-    [purpose='page-hero-image'] {
-      max-width: 600px;
-      img {
-        width: 100%;
-      }
-    }
-    [purpose='supported-os-grid'] {
-      gap: 24px;
-    }
-    // Let each distro fill its column so five still fit at 768px.
-    [purpose='supported-os'] {
-      width: auto;
-    }
-    [purpose='quote-and-logos'] {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 48px;
-
-      [purpose='section-quote'] {
-        max-width: 560px;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        [purpose='quote-text'] {
-          text-align: center;
-        }
-        [purpose='name-and-title'] {
-          align-items: center;
-        }
-        [purpose='quote-author-info'] {
-          justify-content: center;
-        }
-      }
-    }
-
-    [purpose='logo-grid'] {
-      display: flex;
-      flex-direction: column;
-      min-width: 100%;
-      [purpose='logo-row'] {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        &:first-of-type {
-          border-bottom: 1px solid #E2E4EA;
-        }
-        [purpose='logo'] {
-          &:nth-of-type(2) {
-            border-right: 1px solid #E2E4EA;
-            border-left: 1px solid #E2E4EA;
-          }
-          height: 76px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 33.33%;
-          img {
-            height: 20px;
-            width: auto;
-          }
-          &.nutanix {
-            padding: 0 19.482px 0 20.55px;
-            img {
-              height: 12px;
-            }
-          }
-          &.leidos {
-            padding: 0 24.418px 0 24.447px;
-            img {
-              height: 20px;
-            }
-          }
-          &.proton {
-            padding: 0 26.913px 0 27.856px;
-            img {
-              height: 20px;
-            }
-          }
-          &.grafana {
-            padding: 0 8.138px 0 7.804px;
-            img {
-              height: 18px;
-            }
-          }
-          &.calendly {
-            padding: 0 25.172px 0 25.287px;
-            img {
-              height: 20px;
-            }
-          }
-
-        }
-
-      }
-    }
-
-    [purpose='three-column-list'] {
-      gap: 48px;
-      [purpose='feature'] {
-        flex-basis: ~'calc((100% - 2 * 48px) / 3)';
-      }
-    }
-    [purpose='banner'] {
-      [purpose='banner-text'] {
-        padding: 48px 32px;
-      }
-    }
-
-  }
-
-  @media (max-width: 767px) {
-    .section-spacing(@section-160-sm; @section-200-sm; @section-64-sm; 32px);
-
-    // Flex instead of grid so a partial last row of distros is centered.
-    [purpose='supported-os-grid'] {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    [purpose='supported-os'] {
-      flex: 0 0 ~'calc((100% - 3 * 24px) / 4)';
-    }
-
-    [purpose='page-container'] {
-      padding: 32px;
-    }
-    [purpose='page-hero'] {
-      padding-top: 32px;
-      padding-bottom: 0;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      gap: 48px;
-    }
-    [purpose='page-hero-content'] {
-      max-width: 100%;
-      align-items: center;
-      text-align: center;
-    }
-    [purpose='top-section'] {
-      [purpose='section-heading'] {
-        width: 510px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-    [purpose='page-hero-text'] {
-      br {
-        display: none;
-      }
-    }
-    [purpose='feature-with-image-row'] {
-      [purpose='feature-item'] {
-        max-width: unset;
-        width: 100%;
-        gap: 32px;
-        flex: unset;
-        align-items: center;
-        [purpose='feature-image'] {
-          img {
-            // max-height: 284px;
-            width: 100%;
-            align-self: center;
-            aspect-ratio: 126 / 71;
-          }
-        }
-      }
-      [purpose='image-caption'] {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-    }
-    [purpose='top-section'], [purpose='hardware-section'] {
-      [purpose='section-heading'] {
-        max-width: 100%;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-    [purpose='top-section'] {
-      [purpose='feature-text'] {
-        max-width: 100%;
-      }
-    }
-    [purpose='feature-text'] {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    [purpose='feature-image'] {
-      img {
-        max-width: 100%;
-      }
-    }
-    [purpose='quote-and-logos'] {
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-
-      [purpose='logo-grid'] {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        [purpose='logo-row'] {
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          &:first-of-type {
-            border-bottom: 1px solid #E2E4EA;
-          }
-          [purpose='logo'] {
-            &:nth-of-type(2) {
-              border-right: 1px solid #E2E4EA;
-              border-left: 1px solid #E2E4EA;
-            }
-            height: 76px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 33.33%;
-            img {
-              height: 20px;
-              width: auto;
-            }
-            &.nutanix {
-              padding: 0 29.374px 0 29.775px;
-              img {
-                height: 14px;
-              }
-            }
-            &.leidos {
-              padding: 26px 33.637px 26px 33px;
-              img {
-                height: 24px;
-              }
-            }
-            &.proton {
-              padding: 26px 36.723px 26px 37px;
-              img {
-                height: 24px;
-              }
-            }
-            &.grafana {
-              padding: 26px 17px 27px 16px;
-              img {
-                height: 23px;
-              }
-            }
-            &.calendly {
-              padding: 26px 34.551px 26px 34px;
-              img {
-                height: 25px;
-              }
-            }
-
-          }
-
-        }
-      }
-    }
-
-    [purpose='banner'] {
-      flex-direction: column;
-      [purpose='banner-image'] {
-        width: 100%;
-        max-width: unset;
-        height: 340px;
-        border-top-right-radius: unset;
-        border-bottom-left-radius: 16px;
-      }
-      [purpose='banner-text'] {
-        width: 100%;
-      }
-    }
-
-  }
-
-  @media (max-width: 575px) {
-    .section-spacing(@section-160-xs; @section-200-xs; @section-64-xs; 32px);
-
-    [purpose='page-container'] {
-      padding-left: 24px;
-      padding-right: 24px;
-    }
-    [parasails-component='scrollable-tweets'] {
-      [purpose='tweets'] {
-        padding-left: 24px;
-      }
-    }
-
-    [purpose='page-hero-headings'] {
-      h4 {
-        font-size: 16px;
-      }
-      h1 {
-        font-size: 32px;
-      }
-    }
-    [purpose='page-hero-image'] {
-      img {
-        height: auto;
-        width: 100%;
-        flex: 1 0 0;
-        aspect-ratio: 4 / 3;
-      }
-    }
-    [purpose='supported-os'] {
-      flex-basis: ~'calc((100% - 24px) / 2)';
-    }
-    [purpose='three-column-list'] {
-      gap: 40px;
-      &.sm-gap {
-        [purpose='feature'] {
-          flex-basis: 100%;
-        }
-      }
-      [purpose='feature'] {
-        flex-basis: 100%;
-      }
-    }
-
-    [purpose='page-hero-headings'], [purpose='bottom-cta'] {
-      h1 {
-        font-size: 32px;
-      }
-    }
-    [purpose='top-section'] [purpose='section-heading'], [purpose='hardware-section'] [purpose='section-heading'], [purpose='feature-text'] {
-      h2 {
-        font-size: 24px;
-      }
-    }
-    [purpose='quote-and-logos'] {
-      [purpose='logo-grid'] {
-        width: 100%;
-        [purpose='logo-row'] {
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          border-bottom: 1px solid #E2E4EA;
-          &:last-of-type {
-            border-bottom: none;
-          }
-          [purpose='logo'] {
-            &:nth-of-type(2) {
-              border-right: none;
-              border-left: 1px solid #E2E4EA;
-            }
-            height: 76px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 50%;
-            img {
-              height: 20px;
-              width: auto;
-            }
-            &.nutanix {
-              padding: unset;
-              img {
-                height: 14px;
-              }
-            }
-            &.leidos {
-              padding: unset;
-              img {
-                height: 24px;
-              }
-            }
-            &.proton {
-              padding: unset;
-              img {
-                height: 24px;
-              }
-            }
-            &.grafana {
-              padding: unset;
-              img {
-                height: 22px;
-              }
-            }
-            &.calendly {
-              padding: unset;
-              img {
-                height: 25px;
-              }
-            }
-
-          }
-
-        }
-      }
-    }
-  }
-
-  @media (max-width: 375px) {
-    [purpose='tweets-container'] {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-    [purpose='button-row'] {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      [purpose='cta-button'] {
-        width: 100%;
-      }
-    }
-    [purpose='cta-button'] {
-      width: auto;
-    }
-    [parasails-component='scrollable-tweets'] {
-      [purpose='tweets'] {
-        margin-top: 32px;
-        margin-bottom: 0px;
-        padding-left: 16px;
-      }
-    }
-
-  }
-
-}
-
-#unified-endpoint-management {
-  [purpose='section-buttons'] {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    align-items: center;
-    white-space: nowrap;
-  }
-
-  [purpose='section-with-image'] {
-    display: flex;
-    flex-direction: row;
-    gap: 64px;
-
-    [purpose='feature-text'] {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      max-width: 50%;
-    }
-    [purpose='section-image'] {
-      img {
-        aspect-ratio: 4 / 3;
-        border-radius: 16px;
-      }
-    }
-  }
-
-  [purpose='section-image'] {
-    background: #FFF;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    img {
-      max-width: 797px;
       width: 100%;
       height: auto;
     }
   }
 
+  // Centered intro with OS pills (same pill style as /apple and /windows)
+  [purpose='top-section'] > [purpose='page-section']:first-child [purpose='feature-text'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: @inner-padding;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  [purpose='pills'] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: @inner-padding-sm @inner-padding-xs;
+    max-width: 720px;
+    margin-top: @section-gap-sm;
+  }
+  [purpose='pill'] {
+    display: inline-flex;
+    align-items: center;
+    gap: @inner-padding-xs;
+    padding: @inner-padding-xs @inner-padding;
+    border: 1px solid @core-fleet-black-10;
+    border-radius: 100px;
+    background-color: @accent-white;
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 500;
+    color: @core-fleet-black;
+    &::before {
+      content: ' ';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-image: url('/images/icon-checkmark-green-16x16@2x.png');
+      background-size: 16px 16px;
+    }
+  }
+
+  // Pain banner (from /endpoint-governance and /linux-management)
+  [purpose='banner'] {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid @core-fleet-black-10;
+    border-radius: 24px;
+    background-color: @ui-off-white;
+    overflow: hidden;
+    [purpose='banner-text'] {
+      display: flex;
+      flex-direction: column;
+      gap: @section-gap;
+      flex: 1 1 50%;
+      padding: @section-64 @section-48;
+    }
+    [purpose='banner-body'] {
+      display: flex;
+      flex-direction: column;
+    }
+    [purpose='banner-item'] {
+      display: flex;
+      flex-direction: column;
+      gap: @inner-padding-xs;
+      padding: @section-gap-sm 0;
+      &:first-of-type {
+        padding-top: 0;
+      }
+      &:last-of-type {
+        padding-bottom: 0;
+      }
+      &:not(:last-of-type) {
+        border-bottom: 1px solid @core-fleet-black-10;
+      }
+    }
+    [purpose='banner-image'] {
+      flex: 1 1 50%;
+      max-width: 525px;
+      background: url('/images/ai-powered-it-banner-525x546@2x.png') center / cover no-repeat;
+    }
+  }
+
+  // Callouts that close a section with a demo CTA
   [purpose='callout'] {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 32px;
-    margin-top: 48px;
-    padding: 32px 40px;
+    gap: @section-gap;
+    padding: @section-gap @section-48-lg;
+    border: 1px solid @core-vibrant-blue-25;
     border-radius: 16px;
-    // page-section (this callout's parent in the pain-card block) sets
-    // align-items: flex-start, which otherwise shrinks this to its content
-    // width instead of the full section width the other callout gets.
-    align-self: stretch;
-    width: 100%;
-    background: #F5F3FF;
-    border: 1px solid #E3DEFC;
-    // Stacks and centers everything instead of the default left-text,
-    // right-button row. Used for the callout that closes the pain-card list.
-    &.centered {
-      flex-direction: column;
-      text-align: center;
-      [purpose='callout-text'] {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+    background-color: @core-vibrant-blue-10;
     [purpose='callout-text'] {
-      h3 {
-        color: #192147;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 128%;
-        margin-bottom: 4px;
-      }
-      p {
-        color: #515774;
-        font-size: 15px;
-        line-height: 150%;
-      }
-    }
-    [purpose='cta-button'] {
-      // No size override here on purpose — every CTA on the page uses the
-      // same base [purpose='cta-button'] size (36px height, 14px type).
-      flex-shrink: 0;
-    }
-  }
-
-  @media (max-width: 991px) {
-    [purpose='section-buttons'] {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      align-items: flex-start;
+      gap: @inner-padding-xxs;
+    }
+    h3 {
+      .title-m();
+      font-size: 20px;
+      color: @core-fleet-black;
+      margin-bottom: 0px;
     }
   }
 
-  @media (max-width: 767px) {
-    [purpose='callout'] {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 24px;
-      [purpose='cta-button'] {
-        width: 100%;
-      }
-    }
-    [purpose='section-with-image'] {
-      flex-direction: column;
-      &.reverse {
-        flex-direction: column-reverse;
-      }
-      [purpose='feature-text'] {
-        max-width: unset;
-      }
-    }
-    [purpose='section-buttons'] {
-      display: flex;
-      flex-direction: row;
-      gap: 24px;
-      align-items: center;
-    }
-  }
-
-  @media (max-width: 575px) {
-    [purpose='section-buttons'] {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-items: flex-start;
-    }
-  }
-
-  [purpose='comparison'] {
+  // "Introducing Fleet" three-up (from /endpoint-governance)
+  [purpose='section-heading'] {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-  }
-
-  [purpose='comparison-intro'] {
-    max-width: 640px;
-    h2 {
-      margin-bottom: 12px;
-    }
-  }
-
-  [purpose='comparison-grid'] {
-    border: 1px solid #E2E4EA;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  [purpose='comparison-head'] {
-    display: grid;
-    grid-template-columns: 1.3fr 2fr;
-    gap: 24px;
-    padding: 14px 24px;
-    background: #F9FAFC;
-    border-bottom: 1px solid #E2E4EA;
-    span {
-      font-size: 13px;
-      font-weight: 700;
-      color: @core-fleet-black;
-    }
-  }
-
-  [purpose='comparison-row'] {
-    display: grid;
-    grid-template-columns: 1.3fr 2fr;
-    gap: 24px;
-    padding: 18px 24px;
-    align-items: start;
-    &:not(:last-of-type) {
-      border-bottom: 1px solid #E2E4EA;
-    }
-  }
-
-  [purpose='comparison-capability'] {
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 22px;
-    color: @core-fleet-black;
-  }
-
-  [purpose='comparison-cell'] {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 14px;
-    line-height: 21px;
-    color: #515774;
-    [purpose='comparison-label'] {
-      display: none;
-      font-size: 12px;
-      font-weight: 700;
-      color: @core-fleet-black;
-    }
-    [purpose='comparison-value'] {
-      padding-left: 26px;
-      text-indent: -26px;
-      &::before {
-        content: ' ';
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        margin-right: 8px;
-        vertical-align: -4px;
-        background-size: 18px 18px;
-        background-repeat: no-repeat;
-      }
-    }
-    &.yes [purpose='comparison-value']::before {
-      background-image: url('/images/icon-checkmark-green-20x20@2x.png');
-    }
-    &.part [purpose='comparison-value']::before {
-      background-image: url('/images/icon-checkmark-fleet-black-75-9x7@2x.png');
-      background-size: 12px 10px;
-      background-position: 3px 4px;
-      opacity: 0.45;
-    }
-    &.no [purpose='comparison-value']::before {
-      background-image: none;
-      content: '\2013';
-      color: #8B93AD;
-      text-align: center;
-      line-height: 18px;
-      vertical-align: 0;
-    }
-  }
-
-  [purpose='comparison-note'] {
-    font-size: 14px;
-    line-height: 21px;
-    color: #515774;
-    max-width: 720px;
-  }
-
-  @media (max-width: 767px) {
-    [purpose='comparison-head'] {
-      display: none;
-    }
-    [purpose='comparison-row'] {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 20px;
-    }
-    [purpose='comparison-cell'] [purpose='comparison-label'] {
-      display: block;
-    }
-  }
-}
-
-#unified-endpoint-management {
-  [purpose='logo-grid'] [purpose='logo-row'] [purpose='logo'] {
-    &.nvidia img {
-      height: 22px;
-    }
-    &.stripe img {
-      height: 32px;
-    }
-    &.epic img {
-      height: 40px;
-    }
-    &.uber img {
-      height: 20px;
-    }
-    &.fastly img {
-      height: 24px;
-    }
-    &.rivian img {
-      height: 20px;
-    }
-  }
-}
-
-#unified-endpoint-management {
-  [purpose='capability-list'] {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    max-width: 880px;
-    margin: 32px auto 0;
-  }
-  [purpose='capability'] {
-    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border: 1px solid @core-fleet-black-10;
-    border-radius: 999px;
-    background: #FFF;
-    img {
-      width: 16px;
-      height: 16px;
-    }
-    span {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 150%;
-      color: @core-fleet-black;
+    gap: @inner-padding;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    [purpose='kicker-text'] img {
+      height: 28px;
     }
   }
-}
-
-#unified-endpoint-management {
-  // The Linux layout fixes image boxes at 16:9; most of these product shots are 4:3, so keep their proportions.
-  [purpose='page-hero-image'] img {
-    object-fit: contain;
+  [purpose='three-column-list'] {
+    .three-column-features();
+    [purpose='feature'] {
+      display: flex;
+      flex-direction: column;
+      gap: @inner-padding;
+      p {
+        .body-m();
+      }
+    }
   }
-  [purpose='section-image'] img {
-    object-fit: contain;
+  [purpose='three-column-list'] + [purpose='button-row'] {
+    justify-content: center;
   }
-}
 
-#unified-endpoint-management {
-  // Every feature image sits on the same light grey panel, inset and faded like the self-service image.
-  // Insets are percentages of the box width, matching where that image's built-in card starts.
-  [purpose='feature-with-image-row'] [purpose='feature-item'] [purpose='feature-image'] {
+  // Image features, two per row
+  [purpose='feature-with-image-row'] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: @section-160 @section-64;
+  }
+  [purpose='feature-item'] {
+    display: flex;
+    flex-direction: column;
+    gap: @section-gap;
+  }
+  [purpose='image-caption'] {
+    display: flex;
+    flex-direction: column;
+    gap: @inner-padding;
+  }
+  // Each screenshot sits inset on a light panel and fades out at the bottom.
+  [purpose='feature-image'] {
     position: relative;
-    background: #F5F6F7;
-    border-radius: 24px;
-    overflow: hidden;
     aspect-ratio: 126 / 71;
     padding: 5.5% 0 0 4.9%;
+    border-radius: 24px;
+    background-color: @core-fleet-black-5;
+    overflow: hidden;
     img {
       display: block;
       width: 100%;
       height: 100%;
-      aspect-ratio: auto;
       object-fit: cover;
       object-position: left top;
       border-top-left-radius: 12px;
-      box-shadow: 0 0 0 1px #E2E4EA, 0 8px 24px rgba(25, 33, 71, 0.08);
+      box-shadow: 0 0 0 1px @core-fleet-black-10, 0 8px 24px fade(@core-fleet-black, 8%);
     }
     &::after {
       content: '';
@@ -1493,74 +270,396 @@
       right: 0;
       bottom: 0;
       height: 40%;
-      background: linear-gradient(to bottom, rgba(245, 246, 247, 0), #F5F6F7);
+      background: linear-gradient(to bottom, fade(@core-fleet-black-5, 0%), @core-fleet-black-5);
       pointer-events: none;
     }
-    &.pre-framed {
-      padding: 0;
+  }
+
+  // Quote and logos (same as /apple and /windows, with larger logos)
+  [purpose='quote-and-logos'] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: @section-64;
+  }
+  [purpose='section-quote'] {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: @section-gap-sm;
+    flex: 1 1 50%;
+    [purpose='quote-content'] {
+      display: flex;
+      flex-direction: column;
+      gap: @section-gap-sm;
+    }
+    [purpose='quote-text'] {
+      font-size: 18px;
+      font-style: italic;
+    }
+  }
+  [purpose='quote-author-image'] img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  [purpose='name-and-title'] {
+    display: flex;
+    flex-direction: column;
+    gap: @inner-padding-xxs;
+  }
+  [purpose='author-name'] {
+    font-size: 14px;
+    font-weight: @bold;
+    color: @core-fleet-black;
+  }
+  [purpose='author-title'] {
+    .body-m();
+  }
+  // The grid's background shows through the 1px gaps as divider lines between logos.
+  [purpose='logo-grid'] {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    flex: 1 1 50%;
+    background-color: @core-fleet-black-10;
+    [purpose='logo'] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 104px;
+      background-color: @accent-white;
       img {
-        border-radius: 0;
-        box-shadow: none;
+        width: auto;
+        max-width: 80%;
+        object-fit: contain;
       }
     }
   }
-}
 
-#unified-endpoint-management {
-  [purpose='logo-grid'] [purpose='logo-row'] [purpose='logo'] {
-    &.thumbtack img {
-      height: 20px;
-    }
-    &.faire img {
-      height: 18px;
-    }
-    &.foursquare img {
-      height: 20px;
-    }
-    &.reed img {
-      height: 26px;
-    }
-    &.campus img {
-      height: 20px;
-    }
-    &.primo img {
-      height: 22px;
-    }
-    &.mollie img {
-      height: 22px;
-    }
-  }
-}
-
-// Customer logos, matching /apple and /windows: a 3x2 grid whose background shows through 1px gaps as dividers.
-#unified-endpoint-management [purpose='quote-and-logos'] [purpose='logo-grid'].customer-logos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  flex: 1 1 50%;
-  width: auto;
-  background-color: #E2E4EA;
-  [purpose='logo'] {
+  // "What to ask every UEM vendor" table
+  [purpose='comparison'] {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 104px;
-    padding: 0;
-    border: none;
-    background-color: #FFF;
-    img {
-      width: auto;
-      max-width: 80%;
-      object-fit: contain;
+    flex-direction: column;
+    gap: @section-gap;
+  }
+  [purpose='comparison-intro'] {
+    display: flex;
+    flex-direction: column;
+    gap: @inner-padding;
+    max-width: 640px;
+  }
+  [purpose='comparison-grid'] {
+    border: 1px solid @core-fleet-black-10;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  [purpose='comparison-head'], [purpose='comparison-row'] {
+    display: grid;
+    grid-template-columns: 1.3fr 2fr;
+    gap: @section-gap-sm;
+    padding: @inner-padding @section-gap-sm;
+  }
+  [purpose='comparison-head'] {
+    border-bottom: 1px solid @core-fleet-black-10;
+    background-color: @ui-off-white;
+    span {
+      .body-m();
+      font-weight: @bold;
+      color: @core-fleet-black;
     }
   }
-  @media (max-width: 991px) {
-    width: 100%;
+  [purpose='comparison-row'] {
+    padding-top: @section-gap-sm;
+    padding-bottom: @section-gap-sm;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid @core-fleet-black-10;
+    }
   }
+  [purpose='comparison-capability'] {
+    .body-l();
+    font-weight: @bold;
+    color: @core-fleet-black;
+  }
+  [purpose='comparison-cell'] {
+    .body-m();
+    color: @core-fleet-black-75;
+    [purpose='comparison-label'] {
+      display: none;
+    }
+    [purpose='comparison-value'] {
+      display: block;
+      padding-left: 28px;
+      text-indent: -28px;
+      &::before {
+        content: ' ';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: @inner-padding-xs;
+        vertical-align: -5px;
+        background-image: url('/images/icon-checkmark-green-20x20@2x.png');
+        background-size: 20px 20px;
+      }
+    }
+  }
+  [purpose='comparison'] [purpose='callout'] {
+    margin-top: @section-gap;
+  }
+
+  // Migration
+  [purpose='section-with-image'] {
+    .feature-with-image();
+    [purpose='feature-text'] {
+      flex: 1 1 0;
+      gap: @section-gap-sm;
+    }
+    [purpose='section-image'] {
+      flex: 1 1 0;
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+      }
+    }
+  }
+
+  // Tweets carousel
+  [purpose='tweets-container'] {
+    max-width: @content-max-width;
+    padding-left: @page-padding;
+    padding-right: @page-padding;
+  }
+  [parasails-component='scrollable-tweets'] [purpose='tweets'] {
+    margin-top: 40px;
+    margin-bottom: 0px;
+    padding-left: @page-padding;
+  }
+
+  // Bottom CTA, inline demo form, then FAQ
+  [purpose='bottom-section'] {
+    gap: @section-64;
+    padding-top: @section-160;
+  }
+  [purpose='bottom-cta'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: @section-gap;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: @inner-padding-xs;
+    }
+  }
+  [purpose='faq-section'] {
+    display: flex;
+    flex-direction: column;
+    gap: @section-48;
+    padding-top: @section-120;
+    h2 {
+      text-align: center;
+    }
+  }
+  [purpose='accordion'] {
+    width: 100%;
+    max-width: 796px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  [purpose='accordion-item'] {
+    border-bottom: 1px solid @core-fleet-black-10;
+  }
+  [purpose='accordion-header'] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: @inner-padding;
+    padding: @section-gap-sm 0;
+    margin-bottom: 0px;
+    cursor: pointer;
+    font-weight: @bold;
+    color: @core-fleet-black;
+    span {
+      font-size: 20px;
+      color: @core-fleet-black-50;
+      transition: transform 0.2s ease;
+    }
+    &[aria-expanded='true'] span {
+      transform: rotate(180deg);
+    }
+  }
+  [purpose='accordion-answer'] p {
+    padding: 0 40px @section-gap-sm 0;
+  }
+  [purpose='faq-note'] {
+    padding-top: @section-gap-sm;
+    a {
+      color: @core-fleet-black-75;
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    [purpose='page-content'], [purpose='hero-and-top-section'], [purpose='top-section'], [purpose='features-section'] {
+      gap: @section-160-lg;
+    }
+    [purpose='feature-with-image-row'] {
+      row-gap: @section-160-lg;
+    }
+    [purpose='page-section'], [purpose='quote-and-logos'] {
+      gap: @section-64-lg;
+    }
+  }
+
+  @media (max-width: 991px) {
+    [purpose='page-content'], [purpose='hero-and-top-section'], [purpose='top-section'], [purpose='features-section'] {
+      gap: @section-160-md;
+    }
+    [purpose='page-section'] {
+      gap: @section-64-md;
+    }
+    [purpose='page-hero'] {
+      flex-direction: column;
+      gap: @section-64-md;
+      text-align: center;
+    }
+    [purpose='page-hero-content'] {
+      align-items: center;
+    }
+    [purpose='page-hero-image'] {
+      max-width: 600px;
+    }
+    [purpose='banner'] [purpose='banner-text'] {
+      padding: @section-48-md @section-gap;
+    }
+    [purpose='feature-with-image-row'] {
+      gap: @section-160-md @section-48;
+    }
+    [purpose='quote-and-logos'] {
+      flex-direction: column;
+      gap: @section-64-md;
+      [purpose='section-quote'] {
+        flex-direction: column;
+        align-items: center;
+        max-width: 560px;
+        text-align: center;
+      }
+      [purpose='name-and-title'] {
+        align-items: center;
+      }
+      [purpose='logo-grid'] {
+        width: 100%;
+      }
+    }
+    [purpose='section-buttons'] {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    [purpose='bottom-section'] {
+      padding-top: @section-160-md;
+    }
+    [purpose='faq-section'] {
+      padding-top: @section-120-md;
+    }
+  }
+
+  @media (max-width: 767px) {
+    [purpose='page-content'], [purpose='hero-and-top-section'], [purpose='top-section'], [purpose='features-section'] {
+      gap: @section-160-sm;
+    }
+    [purpose='page-section'] {
+      gap: @section-64-sm;
+    }
+    [purpose='banner'] {
+      flex-direction: column;
+      [purpose='banner-image'] {
+        flex: none;
+        max-width: none;
+        height: 340px;
+      }
+    }
+    [purpose='callout'] {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: @section-gap-sm;
+      [purpose='cta-button'] {
+        width: 100%;
+      }
+    }
+    [purpose='feature-with-image-row'] {
+      grid-template-columns: 1fr;
+      row-gap: @section-120-sm;
+    }
+    [purpose='comparison-head'] {
+      display: none;
+    }
+    [purpose='comparison-row'] {
+      grid-template-columns: 1fr;
+      gap: @inner-padding-sm;
+      padding: @section-gap-sm;
+    }
+    [purpose='section-buttons'] {
+      flex-direction: row;
+      align-items: center;
+    }
+    [purpose='bottom-section'] {
+      padding-top: @section-160-sm;
+    }
+  }
+
   @media (max-width: 575px) {
-    grid-template-columns: repeat(2, 1fr);
-    [purpose='logo'] {
-      height: 88px;
+    [purpose='page-content'], [purpose='hero-and-top-section'], [purpose='top-section'], [purpose='features-section'] {
+      gap: @section-160-xs;
+    }
+    [purpose='page-section'] {
+      gap: @section-64-xs;
+    }
+    [purpose='page-hero'] {
+      padding-top: 0;
+      gap: @section-64-xs;
+    }
+    [purpose='banner'] [purpose='banner-text'] {
+      padding: @section-gap @section-gap-sm;
+    }
+    [purpose='logo-grid'] {
+      grid-template-columns: repeat(2, 1fr);
+      [purpose='logo'] {
+        height: 88px;
+      }
+    }
+    [purpose='section-buttons'] {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    [purpose='tweets-container'] {
+      padding-left: @page-padding-mobile;
+      padding-right: @page-padding-mobile;
+    }
+    [parasails-component='scrollable-tweets'] [purpose='tweets'] {
+      padding-left: @page-padding-mobile;
+    }
+    [purpose='bottom-section'] {
+      padding-top: @section-160-xs;
+    }
+    [purpose='faq-section'] {
+      padding-top: @section-120-xs;
+    }
+  }
+
+  @media (max-width: 375px) {
+    [purpose='button-row'] {
+      flex-direction: column;
+      gap: @inner-padding;
+      [purpose='cta-button'] {
+        width: 100%;
+      }
     }
   }
 }
