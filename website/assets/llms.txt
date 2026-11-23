@@ -1,0 +1,115 @@
+# Fleet
+
+> Fleet is open-source, AI-native device management, patching, and governance for every OS: macOS, Windows, Linux, Chromebooks, iOS, iPadOS, and Android. IT and security teams use Fleet to secure and maintain every device from one place, and they can do the work through the AI tools they already use, like Claude, Copilot, or ChatGPT.
+
+Fleet is also known as Fleet Device Management. It is built by Fleet Device Management Inc. The Fleet team helped create osquery and remains committed to improving it.
+
+Key facts:
+
+- Works with your AI tool: describe what you need in your own words, and the AI tool works out the change in Fleet, whether that's a policy, a report, or a configuration profile. A person on your team approves every change before it reaches any device.
+- Built for security teams: see which AI agents and apps are running on every Mac, PC, and Linux machine, check that security controls are working, and detect vulnerabilities automatically.
+- One system for MDM, patching, software deployment, and device data across every OS, with no Microsoft E3/E5 bundle required.
+- Every setting can be managed as code in version-controlled YAML (GitOps), or in the browser.
+- Runs on-premise, in your own cloud (AWS, Azure, GCP), in air-gapped environments, or hosted by Fleet.
+- Used in production by teams managing thousands of devices. A few large organizations manage 400,000 or more.
+- Open source. Free features will always be free. Fleet Premium is available self-hosted or as a managed cloud.
+- Transparent by design: Fleet collects only the data needed to manage and secure devices, and isn't built to log private activity like keystrokes, emails, or webcams.
+
+## Product
+
+- [Fleet homepage](https://fleetdm.com/): Overview of Fleet for IT and security teams.
+- [AI-powered IT](https://fleetdm.com/ai): How Fleet lets AI safely make changes across your devices, with your team in control.
+- [Device management for cybersecurity](https://fleetdm.com/cybersecurity): See which AI agents and apps are running on every device and check that security controls are working.
+- [Endpoint governance](https://fleetdm.com/endpoint-governance): Secure every extension, package, and AI tool running on your devices.
+- [Security and control](https://fleetdm.com/security-and-control): Control what belongs on your devices and detect vulnerabilities automatically.
+- [Device management (MDM, EMM, and UEM)](https://fleetdm.com/device-management): MDM and unified endpoint management for macOS, Windows, Linux, iOS, iPadOS, Android, and ChromeOS.
+- [Software management](https://fleetdm.com/software-management): Install apps from a curated catalog or upload your own custom packages.
+- [Apple device management](https://fleetdm.com/apple): Patch apps, answer questions, and manage every Mac, iPhone, and iPad.
+- [Windows management](https://fleetdm.com/windows): Patch apps, answer questions, and manage every Windows setting.
+- [Linux management](https://fleetdm.com/linux): Linux MDM for every distro, alongside macOS and Windows.
+- [Infrastructure as code](https://fleetdm.com/infrastructure-as-code): Manage every endpoint setting in version-controlled YAML.
+- [Deploy Fleet anywhere](https://fleetdm.com/deployment): Self-host on-premise, in a private cloud, or air-gapped, or use Fleet Cloud.
+- [Integrations](https://fleetdm.com/integrations): IT ticketing systems, SIEM and SOAR platforms, and custom IT workflows.
+- [Better with Fleet](https://fleetdm.com/better): How Fleet approaches privacy and transparency for end users.
+
+## Pricing and contact
+
+- [Pricing](https://fleetdm.com/pricing): Fleet Free and Fleet Premium, self-hosted or managed cloud.
+- [Contact](https://fleetdm.com/contact): Get in touch with the Fleet team.
+- [Support](https://fleetdm.com/support): Ask a question or get in touch with Fleet engineers.
+
+## Documentation
+
+- [Why Fleet](https://fleetdm.com/docs/get-started/why-fleet): What Fleet is for and how teams use it.
+- [Anatomy](https://fleetdm.com/docs/get-started/anatomy): The parts of Fleet and the terms used across the docs.
+- [FAQ](https://fleetdm.com/docs/get-started/faq): Common questions about Fleet.
+- [Deploy Fleet](https://fleetdm.com/docs/deploy/deploy-fleet): Install and run the Fleet server.
+- [Fleet server configuration](https://fleetdm.com/docs/configuration/fleet-server-configuration): Server settings and environment variables.
+- [Agent configuration](https://fleetdm.com/docs/configuration/agent-configuration): Settings for the Fleet agent on hosts.
+- [YAML files](https://fleetdm.com/docs/configuration/yaml-files): Reference for GitOps configuration files.
+- [REST API](https://fleetdm.com/docs/api/rest-api): Full reference for the Fleet REST API.
+- [Audit logs](https://fleetdm.com/docs/api/global-audit-logs): Activity types Fleet records for every change.
+- [Guides](https://fleetdm.com/guides): All how-to guides.
+
+## AI
+
+- [Connect your AI tool to Fleet](https://fleetdm.com/guides/connect-your-ai-tool-to-fleet): Setup for Copilot, Claude, Codex, or Gemini.
+- [Fleet MCP server](https://fleetdm.com/guides/fleet-mcp): Connect AI tools like Claude and Cursor to your Fleet instance.
+- [Export Fleet to GitOps with an AI agent](https://fleetdm.com/guides/export-fleet-to-gitops-with-an-ai-agent): Turn your current Fleet settings into a GitOps repository you can review and apply.
+
+## Security and patching guides
+
+- [Vulnerability processing](https://fleetdm.com/guides/vulnerability-processing): How Fleet detects vulnerabilities and what software it covers.
+- [Conditional access](https://fleetdm.com/guides/conditional-access): How Fleet enforces access controls on hosts.
+- [Enforce OS updates](https://fleetdm.com/guides/enforce-os-updates): Manage OS updates on macOS, Windows, iOS, iPadOS, Android, and Linux.
+- [Patch management with policies](https://fleetdm.com/guides/how-to-use-policies-for-patch-management-in-fleet): Automate patching with patch policies.
+- [Fleet-maintained apps](https://fleetdm.com/guides/fleet-maintained-apps): Install common apps on hosts without additional configuration.
+- [Self-service](https://fleetdm.com/guides/software-self-service): Let end users install approved apps and scripts.
+- [Setup experience](https://fleetdm.com/guides/setup-experience): Customize out-of-the-box setup on every OS.
+- [Windows zero touch without Entra or Autopilot](https://fleetdm.com/guides/windows-zero-touch-without-entra-or-autopilot): Sign users in with your IdP and install software before first sign-in.
+- [macOS MDM migration](https://fleetdm.com/guides/mdm-migration): Move Macs from another MDM to Fleet.
+- [GitOps mode](https://fleetdm.com/guides/gitops-mode): Prevent manual changes to settings managed in git.
+- [Patch management vs. vulnerability management](https://fleetdm.com/articles/patch-management-vs-vulnerability-management): Why the difference matters as exploit windows shrink.
+
+## Comparisons
+
+- [Jamf vs. Fleet](https://fleetdm.com/compare/jamf-vs-fleet)
+- [Jamf vs. Intune vs. Fleet](https://fleetdm.com/compare/jamf-vs-intune-vs-fleet)
+- [Jamf vs. Iru (formerly Kandji) vs. Fleet](https://fleetdm.com/compare/jamf-vs-iru-vs-fleet)
+- [Jamf vs. NinjaOne vs. Fleet](https://fleetdm.com/compare/jamf-vs-ninjaone-vs-fleet)
+- [JumpCloud vs. Workspace ONE vs. Fleet](https://fleetdm.com/compare/jumpcloud-vs-workspace-one-vs-fleet)
+- [Workspace ONE vs. Fleet](https://fleetdm.com/compare/workspace-one-vs-fleet)
+- [The 7 best Jamf alternatives](https://fleetdm.com/articles/seven-best-jamf-alternatives-in-2026-compared)
+- [Mac admin's guide to switching from Jamf to Fleet](https://fleetdm.com/whitepapers/mac-admins-guide-to-switching-from-jamf-to-fleet): Jamf concepts mapped to how Fleet does them.
+
+## Customers
+
+- [What people are saying](https://fleetdm.com/customers): Customer quotes and stories.
+- [Stripe](https://fleetdm.com/case-study/stripe): Migrated 10,000 Macs to Fleet in 10 days.
+- [Foursquare](https://fleetdm.com/case-study/foursquare): Replaced two MDM tools, cut maintenance work by 50%, and reduced costs by 24%.
+- [Fastly](https://fleetdm.com/case-study/fastly): Unified visibility across employee devices and global infrastructure, migrating 99.9% of Macs in 45 days.
+- [Abridge](https://fleetdm.com/case-study/abridge): Gets new hires productive in 10 minutes and answers security questions in minutes.
+- [Campus](https://fleetdm.com/case-study/campus): Migrated off Jamf in two weeks and runs 600 devices as code with a one-person IT team and AI.
+- [Mollie](https://fleetdm.com/case-study/mollie): Runs Fleet on its own infrastructure in Europe and proves endpoint compliance to PCI, DNB, and DORA auditors.
+- [Faire](https://fleetdm.com/case-study/faire): Enforces CIS benchmarks on Macs through GitOps.
+- [Thumbtack](https://fleetdm.com/case-study/thumbtack): Migrated more than 90% of Macs with no IT intervention.
+- [Reed College](https://fleetdm.com/case-study/reed-college): Gained visibility into 300 unmanaged Windows PCs.
+
+## Industries and regions
+
+- [Device management for Europe](https://fleetdm.com/europe): Keep device data in the EU.
+- [Device management for aviation](https://fleetdm.com/aviation)
+- [Pharma 4.0](https://fleetdm.com/pharma): Move device management from batch to continuous.
+
+## Optional
+
+- [Software catalog](https://fleetdm.com/software-catalog): Fleet-maintained apps you can install on hosts.
+- [Report library](https://fleetdm.com/reports): Reports you can run to ask questions about your devices.
+- [Policy library](https://fleetdm.com/policies): Ready-made policies and controls.
+- [Script library](https://fleetdm.com/scripts): Scripts you can run on your devices.
+- [MDM commands](https://fleetdm.com/mdm-commands): Commands you can send to devices.
+- [Data tables](https://fleetdm.com/tables): Schema of the device data Fleet can collect.
+- [Releases](https://fleetdm.com/releases): Release notes.
+- [Articles](https://fleetdm.com/articles): Articles from the Fleet team.
+- [Company handbook](https://fleetdm.com/handbook/company): How Fleet works as a company.
+- [Source code](https://github.com/fleetdm/fleet): The Fleet repository on GitHub.
